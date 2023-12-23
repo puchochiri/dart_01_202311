@@ -92,10 +92,120 @@ void typeList() {
 
   print(allMembersFold);
 
+  Map<String, String> dictionary = {
+    'Harry Potter' : '해리 포터',
+    'Ron Weasley' : '론 위즐리',
+    'Hermione Granger' : '헤르미온느 그레인저',
+  };
+
+  print(dictionary.keys);
+  print(dictionary.values);
+
+  double number = 2;
+
+  print(number + 2); // 4 출력
+  print(number - 2); // 0 출력
+  print(number * 2); // 4 출력
+  print(number / 2); // 1 출력. 나눈 몫
+  print(number % 3); // 2 출력. 나눈 나머지
+
+  //단항 연산도 됩니다.
+  print(number++); //3
+  print(number--); //2
+
+  print(number += 2); //4
+  print(number -= 2); //2
+  print(number *= 2); //4
+  print(number /= 2); //2
+
+  // 타입 뒤에 ?를 명시해서 null값을 가질 수 있습니다.
+  double? number1 = null;
+  print(number1);
+
+  // 타입 뒤에 ?를 명시하지 않아 에러가 납니다.
+  //double number2 = null;
+
+
+
+
+
 }
+
+enum Status {
+  approved,
+  pending,
+  rejected,
+}
+
+void StatusEnum() {
+  Status status = Status.approved;
+  print("enum:" + status.toString());
+
+}
+
+
+
+class Idol {
+  String _name;
+  Idol(this._name);
+}
+// dart lib/main.dart
+class Idol1 {
+  String _name = '블랙핑크게터세터';
+
+  String get name {
+    return this._name;
+  }
+
+  set name(String name) {
+    this._name = name;
+  }
+}
+
+class Idol2 {
+  final String name;
+  final int membersCount;
+
+  Idol2(this.name, this.membersCount);
+
+  void sayName() {
+    print('저는 ${this.name}입니다.');
+  }
+
+  void sayMembersCount() {
+    print('${this.name} 멤버는 ${this.membersCount}명입니다.');
+  }
+}
+
+class BoyGroup extends Idol2 {
+  BoyGroup(
+      String name,
+      int membersCount,
+      ) : super ( // super는 부모 클래스를 지칭합니다.
+    name,
+    membersCount,
+  );
+
+  // 상속받지 않은 기능
+  void sayMale() {
+    print('저는 남자 아이돌 입니다.');
+  }
+
+}
+
 
 
 void main() {
   typeList();
+  StatusEnum();
+  Idol blackPick = Idol('블랙핑크');
+  print(blackPick._name);
+  Idol1 blackPink1 = Idol1();
+  blackPink1.name = '에이핑크';
+  print(blackPink1.name);
+
+  BoyGroup bts = BoyGroup('BTS',7);
+  bts.sayName();
+  bts.sayMembersCount();
+  bts.sayMale();
 }
-// dart lib/main.dart
