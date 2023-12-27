@@ -193,6 +193,83 @@ class BoyGroup extends Idol2 {
 
 }
 
+class GirlGroup extends Idol2 {
+  GirlGroup (
+      super.name,
+      super.membersCount,
+  );
+
+  @override
+  void sayName() {
+    print('저는 여자 아이돌 ${this.name}입니다.');
+  }
+
+
+}
+
+class GirlGroup2 implements Idol2 {
+  final String name;
+  final int membersCount;
+
+  GirlGroup2(
+      this.name,
+      this.membersCount,
+  );
+
+  void sayName() {
+    print('저는 여자 아이돌 ${this.name} 입니다.');
+  }
+
+  void sayMembersCount() {
+    print('${this.name} 멤버는 ${this.membersCount} 명입니다.' );
+  }
+
+}
+
+mixin IdolSingMixin on Idol2 {
+  void sing() {
+    print('${this.name}이 노래를 부릅니다.');
+  }
+}
+
+class BoyGroup2 extends Idol2 with IdolSingMixin {
+  BoyGroup2(
+      super.name,
+      super.membersCount
+  );
+
+  void sayMale() {
+    print('저는 남자 아이돌입니다.');
+  }
+}
+
+abstract class Idol3 {
+  final String name;
+  final int membersCount;
+
+  Idol3(this.name, this.membersCount); // 생성자 선언
+
+  void sayName();
+  void sayMembersCount();
+}
+
+class GirlGroup3 implements Idol3 {
+  final String name;
+  final int membersCount;
+
+  GirlGroup3(
+      this.name,
+      this.membersCount
+      );
+  void sayName() {
+    print('저는 여자 아이돌 ${this.name}입니다. ');
+  }
+
+  void sayMembersCount() {
+    print('${this.name} 멤버는 ${this.membersCount}명 입니다.');
+  }
+}
+
 
 
 void main() {
@@ -208,4 +285,24 @@ void main() {
   bts.sayName();
   bts.sayMembersCount();
   bts.sayMale();
+
+  GirlGroup blackPink2 = GirlGroup('블랙핑크', 4);
+  blackPink2.sayName(); // 자식 클래스의 오버라이드된 메서드 이용
+  blackPink2.sayMembersCount();
+
+  GirlGroup2 blackPink3 = GirlGroup2('블랙핑크5', 5);
+  blackPink3.sayName();
+  blackPink3.sayMembersCount();
+
+  BoyGroup2 bts2 = BoyGroup2('BTS2',7);
+  // 믹스인에 정의된 sing() 함수 사용 가능
+  bts2.sing();
+  bts2.sayMembersCount();
+  bts2.sayName();
+
+  GirlGroup3 blackPink4 = GirlGroup3('블랙핑크핑크3', 10);
+  blackPink4.sayName();
+  blackPink4.sayMembersCount();
+
 }
+
